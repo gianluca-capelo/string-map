@@ -57,52 +57,7 @@ void string_map<T>::agregarHijos(string clave, vector<Nodo*> c){
         }
     }
 }
-/*template <typename T>
-string_map<T>& string_map<T>::operator=(const string_map<T>& d) {
-    if (nullptr == d._raiz) {}
-    else {
-        copiar(this->_raiz, d._raiz);
-        this->_size = d._size;
-    }
-}
-template <typename T>
-void string_map<T>::copiar(Nodo* mio, Nodo* actual){
-    bool tieneHijos = false;
-    bool estaDefinido = actual->definicion != nullptr;
-    for (Nodo* elem : actual->siguientes){
-        if (elem != nullptr ){
-            tieneHijos = true;
-            break;
-        }
-    }
-    if(!tieneHijos){
-        mio = new Nodo();
-        if(estaDefinido){
-            mio = new Nodo(new T(*(actual->definicion)));
-        }
-        else{
-            mio = new Nodo( ); // no hace falta creo
-        }
 
-    }
-    else{
-        if(estaDefinido){
-            mio = new Nodo(new T(*(actual->definicion)));
-        }
-        else{
-            mio = new Nodo( );
-        }
-        copiarHijos(mio->siguientes,actual->siguientes);
-    }
-}
-template <typename T>
-void string_map<T>::copiarHijos(vector<Nodo*> a, vector<Nodo*> c){
-    for(  int i = 0; i  <  c.size() ; i++){
-        if (c[i] != nullptr){
-            copiar(a[i],c[i]);
-        }
-    }
-}*/
 template <typename T>
 string_map<T>::~string_map(){
     if(_raiz != nullptr){
@@ -143,35 +98,6 @@ void string_map<T>::borrarHijos(vector<Nodo*> s){
     }
 }
 
-
-/*template <typename T>
-void string_map<T>:: insert(const pair<string, T>& def){
-
-  Nodo* actual = _raiz;
-  for (int i = 0; i < def.first.length(); i++) {
-    if (i == def.first.length()-1){
-      actual->definicion = new T(def.second);
-      _size++;
-    }
-    else if(actual->siguientes[int(def.first[i])] == nullptr){
-    *//*  if (i == def.first.length()-2){
-          actual->siguientes[int(def.first[i])] = new Nodo(new T(def.second));
-          _size++;
-          break;
-      }
-      else{
-        actual->siguientes[int(def.first[i])] = new Nodo();
-        actual = actual->siguientes[int(def.first[i])];
-      }*//*
-        actual->siguientes[int(def.first[i])] = new Nodo();
-        actual = actual->siguientes[int(def.first[i])];
-    }
-    else{
-        actual = actual->siguientes[int(def.first[i])];
-      }
-    }
-
-}*/
 template <typename T>
 void string_map<T>:: insert(const pair<string, T>& def){
     if (_raiz == nullptr){
@@ -249,59 +175,6 @@ T& string_map<T>::at(const string& clave) {
     //T& res = *(actual->definicion);
     return *actual->definicion;
 }
-
-/*template <typename T>
-void string_map<T>::erase(const string& clave) {
-  Nodo* ultimoNodo = nullptr;
-  Nodo* actual = _raiz;
-  int ultimoIndice = 0;
-  bool estaDefinido, tieneHijos;
-  for(  int i = 0; i  <  clave.length() ; i++) {
-    estaDefinido = (actual->definicion) != nullptr;
-    tieneHijos = false;
-    for (Nodo* elem : actual->siguientes){
-      if (elem != nullptr && elem != actual->siguientes[int(clave[i])]){
-          tieneHijos = true;
-          break;
-      }
-    }
-    if (estaDefinido   || tieneHijos){
-       ultimoNodo = actual;
-       ultimoIndice = i;
-    }
-    actual = actual->siguientes[int(clave[i])];
-  }
-  tieneHijos = false;
-  for (Nodo* elem : actual->siguientes){
-    if (elem != nullptr){
-        tieneHijos = true;
-        break;
-    }
-  }
-  if(tieneHijos){
-    delete (actual->definicion);
-    actual->definicion = nullptr;
-  }
-  else{
-    if(ultimoNodo == nullptr){
-        actual = ultimoNodo->siguientes[int(clave[ultimoIndice ])];
-        delete _raiz;
-        _raiz = nullptr;
-    }           //borramos desde el ultimo
-    else{
-        actual = ultimoNodo->siguientes[int(clave[ultimoIndice])];
-        ultimoNodo->siguientes[int(clave[ultimoIndice ])] = nullptr;
-    }
-    for(  int i = ultimoIndice+1; i  < clave.length() ; i++) {
-      ultimoNodo = actual;
-      actual = actual->siguientes[int(clave[i])];
-      delete ultimoNodo;
-    }
-    delete actual->definicion;
-    delete actual;
-  }
-
-}*/
 
 template <typename T>
 void string_map<T>::erase(const string& clave) {
